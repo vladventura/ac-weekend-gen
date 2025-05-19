@@ -13,12 +13,17 @@ function docReady() {
     quickRaceInput.addEventListener('change', fileOnChange);  
 }
 
-async function fileOnChange(e) {
+function fileOnChange(e) {
     let trackDayInput = document.getElementById("track-day-file");
     let quickRaceInput = document.getElementById("quick-race-file");
     if (trackDayInput.files.length > 0 && quickRaceInput.files.length > 0) {
-        let btn = document.getElementById("generate-file");
-        btn.style.display = "block";
+        let container = document.getElementById("generate-file-container");
+        if (container.children > 0) return;
+        let btn = document.createElement("button");
+        btn.id = "generate-file";
+        btn.onclick = generateButtonOnClick;
+        btn.innerText = "Submit";
+        container.appendChild(btn);
     }
 }
 
